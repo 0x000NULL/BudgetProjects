@@ -1,3 +1,4 @@
+// Import required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -5,10 +6,13 @@ const path = require('path');
 const userRoutes = require('./routes/userRoutes');
 const formRoutes = require('./routes/formRoutes');
 
+// Load environment variables from .env file
 dotenv.config();
 
+// Initialize Express app
 const app = express();
 
+// Middleware to parse JSON bodies
 app.use(express.json());
 
 // Connect to MongoDB
@@ -21,7 +25,7 @@ mongoose.connect(process.env.MONGO_URI, {
     console.error('MongoDB connection error:', error);
 });
 
-// API routes
+// Define API routes
 app.use('/api/users', userRoutes);
 app.use('/api/forms', formRoutes);
 
@@ -33,8 +37,10 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
+// Define the port to run the server
 const PORT = process.env.PORT || 5000;
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

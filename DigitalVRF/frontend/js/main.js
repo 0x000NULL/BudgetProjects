@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Function to fetch all vehicle release forms
 async function fetchForms() {
     try {
         const res = await fetch('/api/forms', {
@@ -87,6 +88,7 @@ async function fetchForms() {
     }
 }
 
+// Function to download a PDF of a specific vehicle release form
 async function downloadPDF(id) {
     const res = await fetch(`/api/forms/${id}/pdf`, {
         headers: {
