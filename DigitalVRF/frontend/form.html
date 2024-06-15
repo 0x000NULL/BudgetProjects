@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Release Form</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Budget Digital VRF</h1>
+        <nav>
+            <a href="admin.html">Admin</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Vehicle Release Form</h2>
+        <form id="formForm" enctype="multipart/form-data">
+            <label for="mva">MVA:</label>
+            <input type="text" id="mva" name="mva" required>
+            <label for="vin">VIN:</label>
+            <input type="text" id="vin" name="vin" required>
+            <label for="makeModel">Car Make and Model:</label>
+            <input type="text" id="makeModel" name="makeModel" required>
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required>
+            <label for="images">Images:</label>
+            <input type="file" id="images" name="images" multiple required>
+            <label for="videos">Videos:</label>
+            <input type="file" id="videos" name="videos" multiple required>
+            <label for="miles">Car Miles:</label>
+            <input type="number" id="miles" name="miles" required>
+            <label for="poNumber">Purchase Order Number:</label>
+            <input type="text" id="poNumber" name="poNumber" required>
+            <label for="soldTo">Sold To:</label>
+            <input type="text" id="soldTo" name="soldTo" required>
+            <button type="submit">Submit Form</button>
+        </form>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html>
