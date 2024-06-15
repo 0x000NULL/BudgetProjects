@@ -29,42 +29,42 @@ The Rental Car Claims system is designed to help a rental car company track and 
    ```bash
    git clone https://github.com/yourusername/rental-car-claims.git
    cd rental-car-claims
-
+```
     Install the backend dependencies:
 
-    bash
+```    bash
 
 npm install
-
+```
 Navigate to the frontend directory and install the frontend dependencies:
 
-bash
+```bash
 
     cd frontend
     npm install
-
+```
 Configuration
 
     Create a .env file in the root directory of the project and add the following environment variables:
 
-    env
+```    env
 
     PORT=3000
     MONGO_URI=your_mongodb_connection_string
     JWT_SECRET=your_jwt_secret
     EMAIL_USER=your_email@example.com
     EMAIL_PASS=your_email_password
-
+```
     Replace the placeholder values with your actual credentials.
 
 Usage
 
     Start the backend server:
 
-    bash
+ ```   bash
 
     npm start
-
+```
     Open the frontend in your browser:
     Navigate to http://localhost:3000 to access the login page.
 
@@ -97,7 +97,7 @@ Claim Routes
 
 Project Structure
 
-bash
+```bash
 
 rental-car-claims/
 │
@@ -133,7 +133,7 @@ rental-car-claims/
 ├── app.js                      # Main server file
 ├── package.json                # NPM package configuration
 └── README.md                   # Project documentation
-
+```
 Detailed Explanation of the Project
 Backend
 
