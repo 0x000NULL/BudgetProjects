@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booth</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+  <h1>Booth System</h1>
+  <form id="boothForm" action="/submit" method="post">
+    <input type="text" id="MVA" name="MVA" placeholder="Enter MVA" maxlength="8">
+    <input type="text" id="EMP_ID" name="EMP_ID" placeholder="Employee ID" maxlength="4">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mvaInput = document.getElementById('MVA');
+      const empIdInput = document.getElementById('EMP_ID');
+      const form = document.getElementById('boothForm');
+
+      mvaInput.addEventListener('input', () => {
+        if (mvaInput.value.length === 8) {
+          empIdInput.focus();
+        }
+      });
+
+      empIdInput.addEventListener('input', () => {
+        if (empIdInput.value.length === 4) {
+          form.submit();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
