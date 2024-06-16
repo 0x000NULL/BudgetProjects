@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const userRoutes = require('./routes/userRoutes');
 const claimRoutes = require('./routes/claimRoutes');
+const emailTemplateRoutes = require('./routes/emailTemplateRoutes');
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // API routes
 app.use('/api/users', userRoutes);
 app.use('/api/claims', claimRoutes);
+app.use('/api/email-templates', emailTemplateRoutes);
 
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, 'frontend')));

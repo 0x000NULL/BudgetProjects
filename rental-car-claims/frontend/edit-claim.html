@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Claim</title>
+    <title>Edit Claim</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
         </nav>
     </header>
     <main>
-        <h2>Add Claim</h2>
-        <form id="claimForm" enctype="multipart/form-data">
+        <h2>Edit Claim</h2>
+        <form id="editClaimForm" enctype="multipart/form-data">
             <label for="renterName">Renter's Name:</label>
             <input type="text" id="renterName" name="renterName" required>
             <label for="renterEmail">Renter's Email:</label>
@@ -27,8 +27,8 @@
             <label for="description">Description:</label>
             <input type="text" id="description" name="description" required>
             <label for="images">Images:</label>
-            <input type="file" id="images" name="images" multiple required>
-            <button type="submit">Submit Claim</button>
+            <input type="file" id="images" name="images" multiple>
+            <button type="submit">Update Claim</button>
         </form>
     </main>
     <script src="js/main.js"></script>

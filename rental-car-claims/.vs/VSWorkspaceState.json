@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\controllers",
+    "\\frontend",
+    "\\frontend\\css",
+    "\\frontend\\js",
+    "\\middleware",
+    "\\models"
+  ],
+  "SelectedNode": "\\app.js",
+  "PreviewInSolutionExplorer": false
+}

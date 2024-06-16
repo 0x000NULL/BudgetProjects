@@ -16,5 +16,8 @@
   },
   "author": "Ethan Aldrich",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^9.5.0"
+  }
 }

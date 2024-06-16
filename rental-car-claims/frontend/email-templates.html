@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Templates</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Rental Car Claims</h1>
+        <nav>
+            <a href="claims.html">View Claims</a>
+            <a href="add-claim.html">Add Claim</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Email Templates</h2>
+        <form id="emailTemplateForm">
+            <label for="templateName">Template Name:</label>
+            <input type="text" id="templateName" name="templateName" required>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+            <label for="body">Body:</label>
+            <textarea id="body" name="body" rows="10" required></textarea>
+            <button type="submit">Save Template</button>
+        </form>
+        <h3>Existing Templates</h3>
+        <ul id="templateList"></ul>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html>
