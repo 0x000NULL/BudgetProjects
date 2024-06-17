@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const userRoutes = require('./routes/userRoutes');
 const formRoutes = require('./routes/formRoutes');
-
+const vehicleReleaseFormRoutes = require('./routes/vehicleReleaseFormRoutes')
 // Load environment variables from .env file
 dotenv.config();
 
