@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rental Car Claims</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <img src="assets/Budget_logo.svg" alt="Budget Logo" class="logo">
         <h1>Rental Car Claims</h1>
         <nav>
-            <a href="login.html">Login</a>
-            <a href="register.html">Register</a>
+            <a href="add-claim.html">Add Claim</a>
+            <a href="email-templates.html">Email Templates</a>
+            <a href="help.html">Help</a>
+            <a href="index.html">Logout</a>
         </nav>
     </header>
     <main>
-        <h2>Welcome to Rental Car Claims System</h2>
-        <p>Please log in or register to manage your claims.</p>
+        <h2>Dashboard</h2>
+        <div id="dashboard">
+            <div id="totalClaims">Total Claims: 0</div>
+            <div id="claimsByStatus">Claims by Status: 0</div>
+            <div id="recentActivity">Recent Activity</div>
+            <canvas id="claimsChart"></canvas>
+        </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

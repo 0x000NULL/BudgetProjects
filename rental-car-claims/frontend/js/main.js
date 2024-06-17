@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const claimForm = document.getElementById('claimForm');
     const editClaimForm = document.getElementById('editClaimForm');
     const emailTemplateForm = document.getElementById('emailTemplateForm');
+    const searchForm = document.getElementById('searchForm');
+    const exportForm = document.getElementById('exportForm');
     const templateList = document.getElementById('templateList');
 
     if (loginForm) {
@@ -175,15 +177,41 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTemplates();
     }
 
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetchClaims();
+        });
+    }
+
+    if (exportForm) {
+        exportForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            exportClaims();
+        });
+    }
+
     if (window.location.pathname.endsWith('claims.html')) {
         fetchClaims();
     }
+
+    if (window.location.pathname.endsWith('index.html')) {
+        fetchDashboardData();
+    }
 });
 
-// Function to fetch all vehicle release forms
+// Function to fetch all claims with search and filter parameters
 async function fetchClaims() {
+    const status = document.getElementById('status').value;
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    const renterName = document.getElementById('renterName').value;
+    const vehicleDetails = document.getElementById('vehicleDetails').value;
+
+    let query = `?status=${status}&startDate=${startDate}&endDate=${endDate}&renterName=${renterName}&vehicleDetails=${vehicleDetails}`;
+
     try {
-        const res = await fetch('/api/claims', {
+        const res = await fetch(`/api/claims${query}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -230,6 +258,75 @@ async function loadTemplatesForClaim(claimId) {
         });
     } catch (error) {
         alert('Error fetching templates');
+    }
+}
+
+// Function to export claims data
+async function exportClaims() {
+    const exportFormat = document.querySelector('input[name="exportFormat"]:checked').value;
+    const status = document.getElementById('status').value;
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    const renterName = document.getElementById('renterName').value;
+    const vehicleDetails = document.getElementById('vehicleDetails').value;
+
+    let query = `?status=${status}&startDate=${startDate}&endDate=${endDate}&renterName=${renterName}&vehicleDetails=${vehicleDetails}&exportFormat=${exportFormat}`;
+
+    try {
+        const res = await fetch(`/api/claims${query}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `claims.${exportFormat}`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        alert('Error exporting claims');
+    }
+}
+
+// Function to fetch dashboard data
+async function fetchDashboardData() {
+    try {
+        const res = await fetch('/api/dashboard', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        const data = await res.json();
+        document.getElementById('totalClaims').textContent = `Total Claims: ${data.totalClaims}`;
+        document.getElementById('claimsByStatus').textContent = `Claims by Status: ${data.claimsByStatus}`;
+
+        const ctx = document.getElementById('claimsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(data.claimsByStatus),
+                datasets: [{
+                    label: 'Number of Claims',
+                    data: Object.values(data.claimsByStatus),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        alert('Error fetching dashboard data');
     }
 }
 
