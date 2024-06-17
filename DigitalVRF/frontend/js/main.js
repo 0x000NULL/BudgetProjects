@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const formForm = document.getElementById('formForm');
     const registerForm = document.getElementById('registerForm');
+    const formsList = document.getElementById('formsList');
+
+
+    if (formsList) {
+        fetchVehicleReleaseForms();
+    }
 
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
@@ -75,6 +81,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Error submitting form');
             }
         });
+    }
+
+    async function fetchVehicleReleaseForms() {
+        try {
+            const res = await fetch('/api/vehicle-release-forms', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            const forms = await res.json();
+            formsList.innerHTML = '';
+            forms.forEach(form => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${form.make} ${form.model} (${form.vin}) - Sold to ${form.soldTo}`;
+                formsList.appendChild(listItem);
+            });
+        } catch (error) {
+            alert('Error fetching vehicle release forms');
+        }
     }
 
     if (window.location.pathname.endsWith('admin.html')) {

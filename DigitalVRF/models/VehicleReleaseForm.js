@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
-// Define the Vehicle Release Form schema
-const formSchema = new mongoose.Schema({
-    mva: { type: String, required: true },
-    vin: { type: String, required: true },
-    makeModel: { type: String, required: true },
-    color: { type: String, required: true },
-    images: [String],  // Array of image paths
-    videos: [String],  // Array of video paths
+const vehicleReleaseFormSchema = new mongoose.Schema({
+    mva: { type: String, required: false },
+    vin: { type: String, required: false },
+    make: { type: String, required: false },
+    model: { type: String, required: false },
+    color: { type: String, required: false },
+    images: [String],
+    videos: [String],
     miles: { type: Number, required: true },
-    poNumber: { type: String, required: true },
+    purchaseOrderNumber: { type: String, required: true },
     soldTo: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }  // Auto-generated timestamp
+    createdAt: { type: Date, default: Date.now }
 });
 
-// Create and export the VehicleReleaseForm model
-const VehicleReleaseForm = mongoose.model('VehicleReleaseForm', formSchema);
+const VehicleReleaseForm = mongoose.model('VehicleReleaseForm', vehicleReleaseFormSchema);
+
 module.exports = VehicleReleaseForm;

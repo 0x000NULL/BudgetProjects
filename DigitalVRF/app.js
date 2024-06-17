@@ -28,6 +28,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // Define API routes
 app.use('/api/users', userRoutes);
 app.use('/api/forms', formRoutes);
+app.use('/api/vehicle-release-forms', vehicleReleaseFormRoutes);
 
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, 'frontend')));
